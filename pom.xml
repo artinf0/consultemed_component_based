@@ -21,20 +21,22 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		
+
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>compile</scope>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
-		
 
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.37</version>
+			<version>5.1.47</version>
 		</dependency>
 
 
@@ -45,19 +47,21 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
-			<version>2.2.6.Final</version>
-			<scope>runtime</scope>
+			<version>2.4.8.Final</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>5.3</version>
-			<scope>compile</scope>
+			<version>7.0</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
@@ -66,41 +70,35 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.faces -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
-			<version>2.2.9</version>
-			<scope>compile</scope>
+			<version>2.4.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.2.8.Final</version>
+			<version>5.4.4.Final</version>
 		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-annotation-processor -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
-			<version>5.0.1.Final</version>
+			<version>5.4.3.Final</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>7.0</version>
+			<version>1.0.2.Final</version>
 		</dependency>
 
 

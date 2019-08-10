@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer height="10" />
+
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="#" />
+				<p:menuitem value="Funcionario" url="#" />
+			</p:breadCrumb>
+		</h:form>
+
+		<p:spacer height="10" />
+
+
+
+		<h:form>
+			<p:messages showDetail="true" closable="true" >
+				<p:autoUpdate/>
+			</p:messages>
+		 <p:panel id="cadastroFuncionario" header="Cadastro de Funcionario" style="margin-bottom:20px">
+		 
+			<h:panelGrid columns="2">
+			
+				<span class="ui-float-label"> 
+					<h:inputHidden value="#{funcionarioController.funcionario.id}" />
+				</span>
+				
+				<h3>Nome do Funcionario</h3>
+				<span class="ui-float-label"> 
+					<h:inputText id="nome" value="#{funcionarioController.funcionario.nome}" required="true"/>
+				</span>
+				
+				<h3>CPF do Funcionario</h3>
+				<span class="ui-float-label"> 
+					<h:inputText id="email" value="#{funcionarioController.funcionario.CPF}" required="true"/>
+				</span>
+				
+				<h3>Telefone do Funcionario</h3>
+				<span class="ui-float-label"> 
+					<h:inputText id="crm" value="#{funcionarioController.funcionario.telefone}" required="true"/>
+				</span>
+				
+				<h3>Email do Funcionario</h3>
+				<span class="ui-float-label"> 
+					<h:inputText id="telefone" value="#{funcionarioController.funcionario.email}" required="true"/>
+				</span>
+			
+			</h:panelGrid>
+			
+		</p:panel>
+		
+			<p:commandButton action="#{funcionarioController.addFuncionario()}" value="Salvar" />
+		
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

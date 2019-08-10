@@ -12,7 +12,7 @@
 		<h:form>
 			<p:breadCrumb>
 				<p:menuitem value="Home" url="#" />
-				<p:menuitem value="Pacientes" url="#" />
+				<p:menuitem value="Funcionarios" url="#" />
 			</p:breadCrumb>
 		</h:form>
 	
@@ -22,34 +22,34 @@
 		<h:form id="frm">
 
 			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
-			<p:dataTable id="table-medicos" var="paciente"
-				value="#{pacienteController.listaPacientes()}">
+			<p:dataTable id="table-funcionarios" var="funcionario"
+				value="#{funcionarioController.listaFuncionario()}">
 				<p:column headerText="Nome">
-					<h:outputText value="#{paciente.nome}" />
+					<h:outputText value="#{funcionario.nome}" />
 				</p:column>
 
 				<p:column headerText="E-mail">
-					<h:outputText value="#{paciente.email}" />
+					<h:outputText value="#{funcionario.email}" />
 				</p:column>
 
 				<p:column headerText="CRM">
-					<h:outputText value="#{paciente.CPF}" />
+					<h:outputText value="#{funcionario.CPF}" />
 				</p:column>
 
 				<p:column headerText="Telefone">
-					<h:outputText value="#{paciente.telefone}" />
+					<h:outputText value="#{funcionario.telefone}" />
 				</p:column>
 
 				<p:column>
-					<p:commandLink action="#{pacienteController.editar()}" value="Editar">
-						<f:setPropertyActionListener target="#{pacienteController.pacienteEditar}" value="#{paciente}" />
+					<p:commandLink action="#{funcionarioController.editar()}" value="Editar">
+						<f:setPropertyActionListener target="#{funcionarioController.funcionarioEditar}" value="#{funcionario}" />
 					</p:commandLink>
 
 					<p:spacer width="10" />
 
-					<p:commandLink action="#{pacienteController.excluir()}"
+					<p:commandLink action="#{funcionarioController.excluir()}"
 						value="Excluir" update="@form" process="@this">
-						<f:setPropertyActionListener target="#{pacienteController.pacienteEditar}" value="#{paciente}" />
+						<f:setPropertyActionListener target="#{funcionarioController.funcionarioEditar}" value="#{funcionario}" />
 					</p:commandLink>
 
 				</p:column>
@@ -59,9 +59,9 @@
 			<p:spacer height="30" width="10" />
 
 
-			<p:commandLink id="novoPaciente"
-				action="#{pacienteController.novoPaciente()}" style="margin-right:20px;">
-				<h:outputText value="Novo Paciente" />
+			<p:commandLink id="novoFuncionario"
+				action="#{funcionarioController.novoFuncionario()}" style="margin-right:20px;">
+				<h:outputText value="Novo Funcionario" />
 			</p:commandLink>
 		</h:form>
 
