@@ -27,34 +27,26 @@ import lombok.Setter;
 @NamedQueries({ @NamedQuery(name = "Medido.findAll", query = "SELECT m FROM Medico m")})
 @NoArgsConstructor
 @EqualsAndHashCode
+@Getter
+@Setter
 @Entity
 @Table(name = "TB_MEDICOS")
 public class Medico implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	@Getter
-	@Setter
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Getter
-	@Setter
+
 	@Column(name = "NOME")
 	private String nome;
-	
-	@Getter
-	@Setter
-	@Column(name = "CRM")
+
+	@Column(name = "CRM", unique = true)
 	private String crm;
-	
-	@Getter
-	@Setter
+
 	@Column(name = "EMAIL")
 	private String email;
-	
-	@Getter
-	@Setter
+
 	@Column(name = "TELEFONE")
 	private String telefone;
 	
