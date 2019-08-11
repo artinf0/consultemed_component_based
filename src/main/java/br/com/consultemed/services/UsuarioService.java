@@ -17,9 +17,17 @@ import br.com.consultemed.repository.repositories.UsuarioRepository;
 public class UsuarioService {
 
 	@Inject
-	private UsuarioRepository dao;
-	
-	public List<Usuario> listaUsuarios(){
-		return this.dao.listaUsuarios();
+	private UsuarioRepository repository;
+
+	public List<Usuario> listarUsuario() throws Exception{
+		return this.repository.listarUsuario();
+	}
+
+	public void salvarUsuario(Usuario usuario) {
+		this.repository.salvarUsuario(usuario);
+	}
+
+	public void deletarUsuario(Long id) throws Exception {
+		this.repository.deleteById(id);
 	}
 }

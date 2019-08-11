@@ -13,9 +13,9 @@ public class Main {
 	@Inject
 	private static UsuarioService service;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
-		List<Usuario> usuarios = service.listaUsuarios();
+		List<Usuario> usuarios = service.listarUsuario();
 		System.out.println(usuarios.size());
 	}
 

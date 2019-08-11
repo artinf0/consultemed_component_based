@@ -16,9 +16,7 @@ import java.util.List;
 @RequestScoped
 public class FuncionarioController {
 
-    @Inject
-    @Getter
-    @Setter
+    @Inject @Getter @Setter
     private Funcionario funcionario;
     @Inject @Getter @Setter
     private Funcionario funcionarioEditar;

@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer height="10" />
+
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="#" />
+				<p:menuitem value="Usuario" url="#" />
+			</p:breadCrumb>
+		</h:form>
+
+		<p:spacer height="10" />
+
+
+
+		<h:form>
+			<p:messages showDetail="true" closable="true" >
+				<p:autoUpdate/>
+			</p:messages>
+		 <p:panel id="cadastroUsuario" header="Cadastro de Usuario" style="margin-bottom:20px">
+
+			<h:panelGrid columns="2">
+
+				<span class="ui-float-label">
+					<h:inputHidden value="#{usuarioController.usuario.id}" />
+				</span>
+
+				<h3>Nome do Usuario</h3>
+				<span class="ui-float-label">
+					<h:inputText id="nome" value="#{usuarioController.usuario.nome}" required="true"/>
+				</span>
+
+				<h3>CPF do Usuario</h3>
+				<span class="ui-float-label">
+					<h:inputText id="CPF" value="#{usuarioController.usuario.CPF}" required="true"/>
+				</span>
+
+				<h3>Telefone do Usuario</h3>
+				<span class="ui-float-label">
+					<h:inputText id="telefone" value="#{usuarioController.usuario.telefone}" required="true"/>
+				</span>
+
+				<h3>Email do Usuario</h3>
+				<span class="ui-float-label">
+					<h:inputText id="email" value="#{usuarioController.usuario.email}" required="true"/>
+				</span>
+
+				<h3>Login do Usuario</h3>
+				<span class="ui-float-label">
+					<h:inputText id="login" value="#{usuarioController.usuario.login}" required="true"/>
+				</span>
+
+				<h3>Senha de acesso</h3>
+				<span class="ui-float-label">
+					<h:inputSecret id="senha"  value="#{usuarioController.usuario.senha}" required="true"/>
+				</span>
+
+			</h:panelGrid>
+
+		</p:panel>
+		
+			<p:commandButton action="#{usuarioController.addUsuario()}" value="Salvar" />
+		
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

@@ -15,8 +15,8 @@ public class FuncionarioService {
         return this.repository.listarFuncionario();
     }
 
-    public void salvarFuncionario(Funcionario paciente) {
-        this.repository.salvarFuncionario(paciente);
+    public void salvarFuncionario(Funcionario funcionario) {
+        this.repository.salvarFuncionario(funcionario);
     }
 
     public void deletarFuncionario(Long id) throws Exception {

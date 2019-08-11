@@ -22,34 +22,38 @@
 		<h:form id="frm">
 
 			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
-			<p:dataTable id="table-medicos" var="medico"
-				value="#{medicoController.listaMedicos()}">
+			<p:dataTable id="table-usuarios" var="usuario"
+				value="#{usuarioController.listaUsuario()}">
 				<p:column headerText="Nome">
-					<h:outputText value="#{medico.nome}" />
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{usuario.CPF}" />
 				</p:column>
 
 				<p:column headerText="E-mail">
-					<h:outputText value="#{medico.email}" />
-				</p:column>
-
-				<p:column headerText="CRM">
-					<h:outputText value="#{medico.crm}" />
+					<h:outputText value="#{usuario.email}" />
 				</p:column>
 
 				<p:column headerText="Telefone">
-					<h:outputText value="#{medico.telefone}" />
+					<h:outputText value="#{usuario.telefone}" />
+				</p:column>
+
+				<p:column headerText="Login">
+					<h:outputText value="#{usuario.login}" />
 				</p:column>
 
 				<p:column>
-					<p:commandLink action="#{medicoController.editar()}" value="Editar">
-						<f:setPropertyActionListener target="#{medicoController.medicoEditar}" value="#{medico}" />
+					<p:commandLink action="#{usuarioController.editar()}" value="Editar">
+						<f:setPropertyActionListener target="#{usuarioController.usuarioEditar}" value="#{usuario}" />
 					</p:commandLink>
 
 					<p:spacer width="10" />
 
-					<p:commandLink action="#{medicoController.excluir()}"
+					<p:commandLink action="#{usuarioController.excluir()}"
 						value="Excluir" update="@form" process="@this">
-						<f:setPropertyActionListener target="#{medicoController.medicoEditar}" value="#{medico}" />
+						<f:setPropertyActionListener target="#{usuarioController.usuarioEditar}" value="#{usuario}" />
 					</p:commandLink>
 
 				</p:column>
@@ -59,8 +63,8 @@
 			<p:spacer height="30" width="10" />
 
 
-			<p:commandLink id="novoMedico"
-				action="#{medicoController.novoMedico()}" style="margin-right:20px;">
+			<p:commandLink id="novoUsuario"
+				action="#{usuarioController.novoUsuario()}" style="margin-right:20px;">
 				<h:outputText value="Novo Usuário" />
 			</p:commandLink>
 		</h:form>
