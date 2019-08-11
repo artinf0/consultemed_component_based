@@ -9,6 +9,6 @@
 
 --
 
-* Não pode cadastrar Usuario e Funcionario com Email +- :heavy_check_mark:
+* Não pode cadastrar Usuario e Funcionario com Email +- :heavy_check_mark:❗
 * E Paciente com mesmo CPF :heavy_check_mark:
 * E Médico com o mesmo CRM :heavy_check_mark:
