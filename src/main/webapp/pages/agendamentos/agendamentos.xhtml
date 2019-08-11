@@ -22,34 +22,42 @@
 		<h:form id="frm">
 
 			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
-			<p:dataTable id="table-medicos" var="medico"
-				value="#{medicoController.listaMedicos()}">
-				<p:column headerText="Nome">
-					<h:outputText value="#{medico.nome}" />
+			<p:dataTable id="table-agendamentos" var="agendamento"
+				value="#{agendamentoController.listaAgendamento()}">
+				<p:column headerText="Medico">
+					<h:outputText value="#{agendamento.medico.nome}" />
 				</p:column>
 
-				<p:column headerText="E-mail">
-					<h:outputText value="#{medico.email}" />
+				<p:column headerText="Paciente">
+					<h:outputText value="#{agendamento.paciente.nome}" />
 				</p:column>
 
-				<p:column headerText="CRM">
-					<h:outputText value="#{medico.crm}" />
+				<p:column headerText="Data">
+					<h:outputText value="#{agendamento.dataAgendamentoFormatado}" />
 				</p:column>
 
-				<p:column headerText="Telefone">
-					<h:outputText value="#{medico.telefone}" />
+				<p:column headerText="Status">
+					<h:outputText styleClass="label label-success" value="Ativo" rendered="#{agendamento.status}" />
+					<h:outputText styleClass="label label-warning" value="Cancelada" rendered="#{!agendamento.status}" />
 				</p:column>
 
 				<p:column>
-					<p:commandLink action="#{medicoController.editar()}" value="Editar">
-						<f:setPropertyActionListener target="#{medicoController.medicoEditar}" value="#{medico}" />
+					<p:commandLink action="#{agendamentoController.editar()}" value="Editar">
+						<f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
 					</p:commandLink>
 
 					<p:spacer width="10" />
 
-					<p:commandLink action="#{medicoController.excluir()}"
+					<p:commandLink action="#{agendamentoController.excluir()}"
 						value="Excluir" update="@form" process="@this">
-						<f:setPropertyActionListener target="#{medicoController.medicoEditar}" value="#{medico}" />
+						<f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
+					</p:commandLink>
+
+					<p:spacer width="10" />
+
+					<p:commandLink action="#{agendamentoController.cancelar()}"
+								   value="#{agendamento.status ? 'Cancelar' : 'Ativar'}" update="@form" process="@this">
+						<f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
 					</p:commandLink>
 
 				</p:column>
@@ -59,8 +67,8 @@
 			<p:spacer height="30" width="10" />
 
 
-			<p:commandLink id="novoMedico"
-				action="#{medicoController.novoMedico()}" style="margin-right:20px;">
+			<p:commandLink id="novoAgendamento"
+				action="#{agendamentoController.novoAgendamento()}" style="margin-right:20px;">
 				<h:outputText value="Novo Agendamento" />
 			</p:commandLink>
 		</h:form>
