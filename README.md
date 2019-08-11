@@ -1,4 +1,4 @@
-# consultemed_component_based
+# Consultemed (JSF)
 
 * CRUD Pacientes :heavy_check_mark:
 * CRUD Usuarios :heavy_check_mark:
