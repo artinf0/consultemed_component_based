@@ -1,5 +1,6 @@
 package br.com.consultemed.beans;
 
+import br.com.consultemed.exceptions.EmailCadastradoException;
 import br.com.consultemed.models.Funcionario;
 import br.com.consultemed.services.FuncionarioService;
 import lombok.Getter;
@@ -32,10 +33,15 @@ public class FuncionarioController {
     }
 
     public String addFuncionario() throws Exception {
-        this.service.salvarFuncionario(this.funcionario);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionario " +funcionario.getNome()+ ", cadastrado com sucesso", null));
-        listaFuncionario();
-        return "/pages/funcionarios/funcionarios.xhtml";
+        try{
+            this.service.salvarFuncionario(this.funcionario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionario " +funcionario.getNome()+ ", cadastrado com sucesso", null));
+            listaFuncionario();
+            return "/pages/funcionarios/funcionarios.xhtml";
+        }catch (EmailCadastradoException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), null));
+            return "";
+        }
     }
 
     public List<Funcionario> listaFuncionario() throws Exception{

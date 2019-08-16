@@ -3,13 +3,16 @@
  */
 package br.com.consultemed.repository.repositories;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import br.com.consultemed.dto.PerfilDTO;
 import br.com.consultemed.models.Usuario;
 import br.com.consultemed.utils.JPAUtils;
 
@@ -21,8 +24,6 @@ public class UsuarioRepository {
 
 	EntityManagerFactory emf = JPAUtils.getEntityManagerFactory();
 	EntityManager factory = emf.createEntityManager();
-
-
 
 	public List<Usuario> listarUsuario() throws Exception {
 		this.factory = emf.createEntityManager();
@@ -81,6 +82,23 @@ public class UsuarioRepository {
 			factory.close();
 		}
 
+	}
+
+	public Usuario buscarByEmail(String email) throws Exception {
+		this.factory = emf.createEntityManager();
+
+		try {
+			Query query = factory.createQuery("select u from Usuario u where u.email = :email", Usuario.class);
+			query.setParameter("email", email);
+			Usuario usuario = (Usuario) query.getSingleResult();
+			return usuario;
+		} catch (Exception e) {
+			e.getMessage();
+		} finally {
+			factory.close();
+		}
+
+		return null;
 	}
 
 }

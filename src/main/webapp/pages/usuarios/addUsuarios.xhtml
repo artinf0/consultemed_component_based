@@ -21,7 +21,7 @@
 
 
 		<h:form>
-			<p:messages showDetail="true" closable="true" >
+			<p:messages  closable="true" >
 				<p:autoUpdate/>
 			</p:messages>
 		 <p:panel id="cadastroUsuario" header="Cadastro de Usuario" style="margin-bottom:20px">
@@ -50,11 +50,6 @@
 				<h3>Email do Usuario</h3>
 				<span class="ui-float-label">
 					<h:inputText id="email" value="#{usuarioController.usuario.email}" required="true"/>
-				</span>
-
-				<h3>Login do Usuario</h3>
-				<span class="ui-float-label">
-					<h:inputText id="login" value="#{usuarioController.usuario.login}" required="true"/>
 				</span>
 
 				<h3>Senha de acesso</h3>

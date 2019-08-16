@@ -21,7 +21,7 @@
 
 
 		<h:form>
-			<p:messages showDetail="true" closable="true" >
+			<p:messages closable="true" >
 				<p:autoUpdate/>
 			</p:messages>
 		 <p:panel id="cadastroFuncionario" header="Cadastro de Funcionario" style="margin-bottom:20px">
@@ -50,6 +50,11 @@
 				<h3>Email do Funcionario</h3>
 				<span class="ui-float-label"> 
 					<h:inputText id="telefone" value="#{funcionarioController.funcionario.email}" required="true"/>
+				</span>
+
+				<h3>Senha de acesso</h3>
+				<span class="ui-float-label">
+					<h:inputSecret id="senha"  value="#{funcionarioController.funcionario.senha}" required="true"/>
 				</span>
 			
 			</h:panelGrid>

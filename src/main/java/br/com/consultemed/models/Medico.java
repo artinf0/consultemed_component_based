@@ -37,17 +37,12 @@ public class Medico implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(name = "NOME")
 	private String nome;
-
-	@Column(name = "CRM", unique = true)
+	@Column(unique = true)
 	private String crm;
-
-	@Column(name = "EMAIL")
+	@Column(unique = true)
 	private String email;
-
-	@Column(name = "TELEFONE")
 	private String telefone;
+	private String senha;
 	
 }

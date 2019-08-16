@@ -75,5 +75,22 @@ public class PacienteRepository {
 
     }
 
+    public Paciente buscarByEmail(String email) throws Exception {
+        this.factory = emf.createEntityManager();
+
+        try {
+            Query query = factory.createQuery("select p from Paciente p where p.email = :email", Paciente.class);
+            query.setParameter("email", email);
+            Paciente paciente = (Paciente) query.getSingleResult();
+            return paciente;
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            factory.close();
+        }
+
+        return null;
+    }
+
 
 }

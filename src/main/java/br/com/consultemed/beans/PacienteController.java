@@ -1,5 +1,6 @@
 package br.com.consultemed.beans;
 
+import br.com.consultemed.exceptions.EmailCadastradoException;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.services.PacienteService;
 import lombok.Getter;
@@ -35,10 +36,15 @@ public class PacienteController {
     }
 
     public String addPaciente() throws Exception {
-        this.service.salvarPaciente(this.paciente);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente " +paciente.getNome()+ ", cadastrado com sucesso", null));
-        listaPacientes();
-        return "/pages/pacientes/pacientes.xhtml";
+        try{
+            this.service.salvarPaciente(this.paciente);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente " +paciente.getNome()+ ", cadastrado com sucesso", null));
+            listaPacientes();
+            return "/pages/pacientes/pacientes.xhtml";
+        }catch (EmailCadastradoException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), null));
+            return "";
+        }
     }
 
     public List<Paciente> listaPacientes() throws Exception{

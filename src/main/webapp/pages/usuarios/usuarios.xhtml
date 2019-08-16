@@ -40,10 +40,6 @@
 					<h:outputText value="#{usuario.telefone}" />
 				</p:column>
 
-				<p:column headerText="Login">
-					<h:outputText value="#{usuario.login}" />
-				</p:column>
-
 				<p:column>
 					<p:commandLink action="#{usuarioController.editar()}" value="Editar">
 						<f:setPropertyActionListener target="#{usuarioController.usuarioEditar}" value="#{usuario}" />

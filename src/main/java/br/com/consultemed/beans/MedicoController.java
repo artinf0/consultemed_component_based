@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.consultemed.exceptions.EmailCadastradoException;
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.services.MedicoService;
 import lombok.Getter;
@@ -47,11 +48,11 @@ public class MedicoController{
 	}
 	
 	public String excluir() throws Exception {
-		this.medico = this.medicoEditar;
-		this.service.deletarMedico(this.medico.getId());
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Médico " +medico.getNome()+ ", excluído com sucesso", null));
-		listaMedicos();
-		return "/pages/medicos/medicos.xhtml";
+			this.medico = this.medicoEditar;
+			this.service.deletarMedico(this.medico.getId());
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Médico " +medico.getNome()+ ", excluído com sucesso", null));
+			listaMedicos();
+			return "/pages/medicos/medicos.xhtml";
 	}
 	
 	public String novoMedico() {
@@ -60,10 +61,15 @@ public class MedicoController{
 	}
 	
 	public String addMedico() throws Exception {
-		this.service.salvarMedico(this.medico);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Médico " +medico.getNome()+ ", cadastrado com sucesso", null));
-		listaMedicos();
-		return "/pages/medicos/medicos.xhtml";
+		try{
+			this.service.salvarMedico(this.medico);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Médico " +medico.getNome()+ ", cadastrado com sucesso", null));
+			listaMedicos();
+			return "/pages/medicos/medicos.xhtml";
+		}catch (EmailCadastradoException e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), null));
+			return "";
+		}
 	}
 	
 	public List<Medico> listaMedicos() throws Exception{

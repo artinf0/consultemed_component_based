@@ -75,4 +75,21 @@ public class FuncionarioRepository {
 
     }
 
+    public Funcionario buscarByEmail(String email) throws Exception {
+        this.factory = emf.createEntityManager();
+
+        try {
+            Query query = factory.createQuery("select f from Funcionario f where f.email = :email", Funcionario.class);
+            query.setParameter("email", email);
+            Funcionario funcionario = (Funcionario) query.getSingleResult();
+            return funcionario;
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            factory.close();
+        }
+
+        return null;
+    }
+
 }

@@ -3,6 +3,7 @@
  */
 package br.com.consultemed.beans;
 
+import br.com.consultemed.exceptions.EmailCadastradoException;
 import br.com.consultemed.models.Usuario;
 import br.com.consultemed.services.UsuarioService;
 import lombok.Getter;
@@ -40,10 +41,15 @@ public class UsuarioController{
     }
 
     public String addUsuario() throws Exception {
-        this.service.salvarUsuario(this.usuario);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario " + usuario.getNome()+ ", cadastrado com sucesso", null));
-        listaUsuario();
-        return "/pages/usuarios/usuarios.xhtml";
+        try {
+            this.service.salvarUsuario(this.usuario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario " + usuario.getNome()+ ", cadastrado com sucesso", null));
+            listaUsuario();
+            return "/pages/usuarios/usuarios.xhtml";
+        } catch (EmailCadastradoException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), null));
+            return "";
+        }
     }
 
     public List<Usuario> listaUsuario() throws Exception{

@@ -1,6 +1,9 @@
-
-<html xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>ConsulteMed</title>
@@ -11,17 +14,18 @@
 	<div align="center" style="margin-top: 300px;">
 
 		<h:form style="align:center">
+			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
 
 			<h:panelGrid columns="2">
 				<h:outputLabel for="nomeUsuario" value="Login" />
-				<p:inputText id="nomeUsuario" value="#{loginController.usuarioLogado.usuario.login}" />
-				
-			
+				<p:inputText id="nomeUsuario" value="#{loginController.loginDTO.login}" />
+
+
 				<h:outputLabel for="senha" value="Senha" />
-				<p:password id="senha" value="#{loginController.usuarioLogado.usuario.senha}" />
-				
+				<p:password id="senha" value="#{loginController.loginDTO.senha}" />
+
 				<p:spacer height="10"/>
-				
+
 			</h:panelGrid>
 
 			<p:commandButton value="Enviar" action="#{loginController.loginUsuario()}" ajax="false" />

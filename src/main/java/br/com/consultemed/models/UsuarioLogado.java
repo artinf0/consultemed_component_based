@@ -24,9 +24,7 @@ import lombok.Setter;
 public class UsuarioLogado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Getter
-	@Setter
-	@Inject
+	@Getter @Setter @Inject
 	private Usuario usuario;
 	
 	@Inject
@@ -34,7 +32,7 @@ public class UsuarioLogado implements Serializable {
 
 	public void logar() {
 		
-		Usuario usuario = this.autenticador.autenticador(this.usuario.getLogin(), this.usuario.getSenha());
+		Usuario usuario = this.autenticador.autenticador2(this.usuario.getEmail(), this.usuario.getSenha());
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.setAttribute("usuario", usuario);
 	}

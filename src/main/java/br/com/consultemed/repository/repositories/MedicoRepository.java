@@ -83,4 +83,21 @@ public class MedicoRepository {
 
 	}
 
+	public Medico buscarByEmail(String email) throws Exception {
+		this.factory = emf.createEntityManager();
+
+		try {
+			Query query = factory.createQuery("select m from Medico m where m.email = :email", Medico.class);
+			query.setParameter("email", email);
+			Medico medico = (Medico) query.getSingleResult();
+			return medico;
+		} catch (Exception e) {
+			e.getMessage();
+		} finally {
+			factory.close();
+		}
+
+		return null;
+	}
+
 }

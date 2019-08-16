@@ -24,8 +24,7 @@ import lombok.Setter;
  *
  */
 
-@NamedQueries({ @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-	@NamedQuery(name = "Usuario.loginUsuario", query = "SELECT u FROM Usuario u WHERE u.login =:login AND u.senha =:senha") })
+@NamedQueries({ @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u") })
 
 @NoArgsConstructor
 @Getter @Setter
@@ -34,11 +33,5 @@ import lombok.Setter;
 @Table(name = "TB_USUARIOS")
 public class Usuario extends Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
-
-	@Column(name = "LOGIN")
-	private String login;
-
-	@Column(name = "SENHA")
 	private String senha;
-	
 }
