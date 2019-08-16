@@ -5,7 +5,7 @@
 * CRUD Funcionarios :heavy_check_mark:
 * CRUD Agendamento :heavy_check_mark:
 * Cancelar Agendamento :heavy_check_mark:
-* Controle de Acesso
+* Controle de Acesso :heavy_check_mark:
 
 --
 
