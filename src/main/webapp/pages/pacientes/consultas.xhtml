@@ -26,7 +26,18 @@
 				<h:form>
 					<h3>Paciente</h3>
 						<span class="ui-float-label">
-						<h:inputText id="id" value="#{agendamentoController.paciente.id}" required="true"/>
+						<p:selectOneMenu id="paciente_selecionado" value="#{agendamentoController.paciente}"
+										 converter="PacienteConverter"
+										 required="true"
+										 requiredMessage="Selecione um Paciente">
+
+                            <f:selectItem itemLabel="Selecione um Paciente" itemValue=""/>
+
+                            <f:selectItems value="#{pacienteController.listaPacientes()}" var="paciente"
+										   itemLabel="#{paciente.nome}"
+										   itemValue="#{paciente}"/>
+
+                		</p:selectOneMenu>
 					</span>
 
 					<p:commandButton action="#{agendamentoController.listarAgendamentoPorPaciente()}" value="Consultar"

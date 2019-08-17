@@ -25,7 +25,18 @@
 				<h:form>
 					<h3>Medico</h3>
 					<span class="ui-float-label">
-						<h:inputText id="id" value="#{agendamentoController.medico.id}" required="true"/>
+						<p:selectOneMenu id="medico_selecionado" value="#{agendamentoController.medico}"
+										 converter="MedicoConverter"
+										 required="true"
+										 requiredMessage="Selecione um Medico">
+
+                            <f:selectItem itemLabel="Selecione um Medico" itemValue=""/>
+
+                            <f:selectItems value="#{medicoController.listaMedicos()}" var="medico"
+										   itemLabel="#{medico.nome}"
+										   itemValue="#{medico}"/>
+
+                		</p:selectOneMenu>
 					</span>
 
 					<h3>Mês</h3>
