@@ -44,7 +44,10 @@
 				
 				<h3>Data do Agendamento</h3>
 				<span class="ui-float-label">
-					<p:calendar id="data" value="#{agendamentoController.agendamento.dataAgendamento}" required="true"/>
+					<p:calendar id="data" value="#{agendamentoController.agendamento.dataAgendamento}"
+								mindate="#{agendamentoController.horaCorrente}"
+								pattern="MM/dd/yyyy HH:mm:ss"
+								required="true"/>
 				</span>
 
 			

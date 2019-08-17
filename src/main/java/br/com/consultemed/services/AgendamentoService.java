@@ -1,9 +1,11 @@
 package br.com.consultemed.services;
 
+import br.com.consultemed.exceptions.HorarioAgendamenteException;
 import br.com.consultemed.models.Agendamento;
 import br.com.consultemed.repository.repositories.AgendamentoRepository;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 public class AgendamentoService {
@@ -15,8 +17,17 @@ public class AgendamentoService {
         return this.repository.listarAgendamento();
     }
 
-    public void salvarAgendamento(Agendamento agendamento) {
-        agendamento.setStatus(true);
+    public List<Agendamento> listarAgendamentoPorData(Date data) throws Exception{
+        return this.repository.listarAgendamentoPorData(data);
+    }
+
+    public void salvarAgendamento(Agendamento agendamento) throws Exception {
+        Boolean statusAgendamento = true;
+        if(repository.agendamentoPorMedicoDataEStatus(agendamento.getMedico(), agendamento.getDataAgendamento(), statusAgendamento).size() > 0){
+            throw new HorarioAgendamenteException("Horário indisponível para agendamento.");
+        }
+
+        agendamento.setStatus(statusAgendamento);
         this.repository.salvarAgendamento(agendamento);
     }
 

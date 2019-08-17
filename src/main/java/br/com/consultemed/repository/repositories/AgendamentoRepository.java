@@ -1,12 +1,15 @@
 package br.com.consultemed.repository.repositories;
 
 import br.com.consultemed.models.Agendamento;
+import br.com.consultemed.models.Medico;
+import br.com.consultemed.utils.DataUtils;
 import br.com.consultemed.utils.JPAUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AgendamentoRepository {
@@ -34,6 +37,53 @@ public class AgendamentoRepository {
 
         return agendamentos;
     }
+
+
+    public List<Agendamento> listarAgendamentoPorData(Date data) throws Exception {
+        this.factory = emf.createEntityManager();
+        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
+        try {
+
+            Query query = this.factory.createQuery("select a from Agendamento a where a.dataAgendamento between :dataInicial and :dataFinal order by a.dataAgendamento asc");
+            query.setParameter("dataInicial", DataUtils.dateStartDateMinutes(data));
+            query.setParameter("dataFinal", DataUtils.dateEndDateMinutes(data));
+
+            agendamentos = query.getResultList();
+
+
+        } catch (Exception e) {
+            e.getMessage();
+            this.factory.getTransaction().rollback();
+        } finally {
+            factory.close();
+        }
+
+        return agendamentos;
+    }
+
+    public List<Agendamento> agendamentoPorMedicoDataEStatus(Medico medico, Date data, Boolean status) throws Exception {
+        this.factory = emf.createEntityManager();
+        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
+        try {
+
+            Query query = this.factory.createQuery("select a from Agendamento a where a.medico = :medico and a.dataAgendamento = :data and a.status = :status");
+            query.setParameter("medico", medico);
+            query.setParameter("data", data);
+            query.setParameter("status", status);
+
+            agendamentos = query.getResultList();
+
+
+        } catch (Exception e) {
+            e.getMessage();
+            this.factory.getTransaction().rollback();
+        } finally {
+            factory.close();
+        }
+
+        return agendamentos;
+    }
+
 
 
     public void salvarAgendamento(Agendamento agendamento) {

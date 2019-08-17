@@ -1,5 +1,6 @@
 package br.com.consultemed.beans;
 
+import br.com.consultemed.exceptions.HorarioAgendamenteException;
 import br.com.consultemed.models.Agendamento;
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
@@ -12,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -41,12 +43,17 @@ public class AgendamentoController {
     }
 
     public String addAgendamento() throws Exception {
-        agendamento.setMedico(this.medico);
-        agendamento.setPaciente(this.paciente);
-        this.service.salvarAgendamento(this.agendamento);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Agendamento de " +agendamento.getPaciente().getNome()+ ", cadastrado com sucesso", null));
-        listaAgendamento();
-        return "/pages/agendamentos/agendamentos.xhtml";
+        try{
+            agendamento.setMedico(this.medico);
+            agendamento.setPaciente(this.paciente);
+            this.service.salvarAgendamento(this.agendamento);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Agendamento cadastrado com sucesso", null));
+            listaAgendamento();
+            return "/pages/agendamentos/agendamentos.xhtml";
+        }catch (HorarioAgendamenteException e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getLocalizedMessage(), null));
+            return "";
+        }
     }
 
     public List<Agendamento> listaAgendamento() throws Exception{
@@ -75,5 +82,9 @@ public class AgendamentoController {
         this.medico = this.agendamento.getMedico();
         this.paciente = this.agendamento.getPaciente();
         return "/pages/agendamentos/addAgendamentos.xhtml";
+    }
+
+    public Date getHoraCorrente(){
+        return new Date();
     }
 }

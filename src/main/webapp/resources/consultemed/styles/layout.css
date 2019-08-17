@@ -22,8 +22,8 @@
 	top: 50px;
 	bottom: 0;
 	left: 0;
-	width: 210px;
-	margin-left: -211px;
+	width: 270px;
+	margin-left: -271px;
 	z-index: 9998;
 	transition: margin-left 0.5s;
 	overflow-y: auto;
@@ -42,7 +42,7 @@
 	}
 	
 	.aw-sidebar.is-toggled {
-		margin-left: -211px;
+		margin-left: -271px;
 	}
 }
 
@@ -54,7 +54,7 @@
 
 @media (min-width: 960px) {
 	.aw-content {
-		margin-left: 210px;
+		margin-left: 270px;
 	}
 	
 	.aw-content.is-toggled {

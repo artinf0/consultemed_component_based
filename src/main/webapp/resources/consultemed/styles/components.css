@@ -36,11 +36,12 @@
 }
 
 .aw-menu > ul .is-selected {
-	border-left: 3px solid #1e94d2;
-	background-color: #f3f3f3;
+
 }
 
-.aw-menu > ul .is-selected a {
+.aw-menu > ul .is-selected > a {
+	border-left: 7px solid #1e94d2;
+	background-color: #f3f3f3;
 	margin-left: -3px;
 	color: #1e94d2;
 }

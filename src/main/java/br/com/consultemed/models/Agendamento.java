@@ -26,11 +26,11 @@ public class Agendamento implements Serializable {
     @ManyToOne
     private Paciente paciente;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataAgendamento;
 
     public String getDataAgendamentoFormatado() {
-        return DataUtils.formatarData(dataAgendamento);
+        return DataUtils.formatarData(dataAgendamento,"dd/MM/yyyy HH:mm:ss");
     }
 
 
