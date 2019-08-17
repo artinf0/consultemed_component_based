@@ -71,6 +71,11 @@ public class AgendamentoController {
         return this.agendamentos;
     }
 
+    public List<Agendamento> listaAgendamentoPorData(Date dataAgendamento) throws Exception {
+        this.agendamentos = this.service.listarAgendamentoPorData(dataAgendamento);
+        return this.agendamentos;
+    }
+
     public String excluir() throws Exception {
         this.agendamento = this.agendamentoEditar;
         this.service.deletarAgendamento(this.agendamento.getId());

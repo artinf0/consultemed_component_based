@@ -13,17 +13,29 @@
             <p:breadCrumb>
                 <p:menuitem value="Home" url="#" />
                 <p:menuitem value="Agendamentos" url="#" />
+                <p:menuitem value="Consulta" url="#" />
             </p:breadCrumb>
         </h:form>
 
         <p:spacer height="10" />
 
-
         <h:form id="frm">
+
+            <p:panel  visible="true" id="pnlAgendamentoFiltro"  header="Consultar Agendamentos por Data" style="margin-bottom:20px">
+                <h3>Data do Agendamento</h3>
+                <span class="ui-float-label">
+					<p:calendar id="data" value="#{agendamentoController.agendamento.dataAgendamento}"
+                                pattern="MM/dd/yyyy HH:mm:ss"
+                                required="true"/>
+				</span>
+
+                <p:commandButton update="@([id$=table-agendamentos])" value="Buscar" />
+            </p:panel>
+
 
             <p:messages showDetail="false" showSummary="true" globalOnly="true" />
             <p:dataTable id="table-agendamentos" var="agendamento"
-                         value="#{agendamentoController.listaAgendamento()}">
+                         value="#{agendamentoController.listaAgendamentoPorData(agendamentoController.agendamento.dataAgendamento)}">
                 <p:column headerText="Medico">
                     <h:outputText value="#{agendamento.medico.nome}" />
                 </p:column>
@@ -41,39 +53,12 @@
                     <h:outputText styleClass="label label-warning" value="Cancelada" rendered="#{!agendamento.status}" />
                 </p:column>
 
-                <p:column>
-                    <p:commandLink action="#{agendamentoController.editar()}" value="Editar">
-                        <f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
-                    </p:commandLink>
-
-                    <p:spacer width="10" />
-
-                    <p:commandLink action="#{agendamentoController.excluir()}"
-                                   value="Excluir" update="@form" process="@this">
-                        <f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
-                    </p:commandLink>
-
-                    <p:spacer width="10" />
-
-                    <p:commandLink action="#{agendamentoController.cancelar()}"
-                                   value="#{agendamento.status ? 'Cancelar' : 'Ativar'}" update="@form" process="@this">
-                        <f:setPropertyActionListener target="#{agendamentoController.agendamentoEditar}" value="#{agendamento}" />
-                    </p:commandLink>
-
-                </p:column>
-
             </p:dataTable>
 
             <p:spacer height="30" width="10" />
 
-
-            <p:commandLink id="novoAgendamento"
-                           action="#{agendamentoController.novoAgendamento()}" style="margin-right:20px;">
-                <h:outputText value="Novo Agendamento" />
-            </p:commandLink>
         </h:form>
 
     </ui:define>
 
 </ui:composition>
-
