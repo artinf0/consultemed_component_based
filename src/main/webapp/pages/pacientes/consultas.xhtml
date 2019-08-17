@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer height="10" />
+
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="#" />
+				<p:menuitem value="Pacientes" url="#" />
+				<p:menuitem value="Consultas" url="#" />
+			</p:breadCrumb>
+		</h:form>
+	
+		<p:spacer height="10" />
+		
+		<div>
+
+			<div>
+				<h1>Consultar Paciente</h1>
+				<h:form>
+					<h3>Paciente</h3>
+						<span class="ui-float-label">
+						<h:inputText id="id" value="#{agendamentoController.paciente.id}" required="true"/>
+					</span>
+
+					<p:commandButton action="#{agendamentoController.listarAgendamentoPorPaciente()}" value="Consultar"
+									 update="@([id$=table-agendamentos])"
+					/>
+
+				</h:form>
+			</div>
+
+			<div>
+				<p:dataTable id="table-agendamentos" var="agendamento"
+							 value="#{agendamentoController.agendamentos}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{agendamento.paciente.nome}" />
+					</p:column>
+
+					<p:column headerText="Data Agendamento">
+						<h:outputText value="#{agendamento.dataAgendamentoFormatado}" />
+					</p:column>
+
+					<p:column headerText="Status">
+						<h:outputText styleClass="label label-success" value="Realizada" rendered="#{agendamento.status and agendamento.dataAgendamento.before(agendamentoController.horaCorrente)}" />
+						<h:outputText styleClass="label label-warning" value="Agendada" rendered="#{agendamento.status and agendamento.dataAgendamento.after(agendamentoController.horaCorrente)}" />
+						<h:outputText styleClass="label label-danger" value="Cancelada" rendered="#{!agendamento.status}" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</div>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
