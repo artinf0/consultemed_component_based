@@ -12,6 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @MappedSuperclass
+@ToString
 public class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
 

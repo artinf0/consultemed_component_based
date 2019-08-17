@@ -20,7 +20,7 @@ import br.com.consultemed.security.AutenticadorService;
 import br.com.consultemed.services.UsuarioService;
 import lombok.Getter;
 import lombok.Setter;
-
+import org.apache.log4j.Logger;
 /**
  * @author carlosbarbosagomesfilho
  *
@@ -43,6 +43,8 @@ public class LoginController implements Serializable {
 	@Inject @Getter @Setter
 	private LoginDTO loginDTO;
 
+	final static Logger logger = Logger.getLogger(LoginController.class);
+
 	public LoginController() {
 
 	}
@@ -60,6 +62,8 @@ public class LoginController implements Serializable {
 		List<PerfilDTO> perfil = autenticadorService.autenticador(this.loginDTO.getLogin(), this.loginDTO.getSenha());
 
 		if(perfil.size() > 0) {
+			logger.info("Login realizado");
+			logger.info(perfil.get(0).toString());
 			this.usuario.setNome(perfil.get(0).getNome());
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 			session.setAttribute("perfil", perfil);
@@ -72,6 +76,8 @@ public class LoginController implements Serializable {
 	}
 
 	public void logout() {
+		logger.info("Logout realizado");
+		logger.info(usuario.toString());
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
