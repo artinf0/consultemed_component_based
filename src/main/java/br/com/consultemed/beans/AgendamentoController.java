@@ -6,10 +6,8 @@ import br.com.consultemed.models.Agendamento;
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.services.AgendamentoService;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.SelectEvent;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -19,7 +17,6 @@ import javax.inject.Named;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @Named
 @RequestScoped
@@ -36,7 +33,7 @@ public class AgendamentoController {
     @Getter @Setter
     private List<Agendamento> agendamentos;
     @Getter @Setter
-    private Date periodoCancelamento;
+    private Date dataPeriodo;
     @Getter @Setter
     private List<CancelamentosUsuarioDTO> listaCancelamentosUsuarioDTO;
 
@@ -107,12 +104,12 @@ public class AgendamentoController {
     }
 
     public List<CancelamentosUsuarioDTO>  topUsuariosCancelamentoAnoMes(){
-        if(this.periodoCancelamento == null){
-            this.periodoCancelamento = new Date();
+        if(this.dataPeriodo == null){
+            this.dataPeriodo = new Date();
         }
 
         Calendar c = Calendar.getInstance();
-        c.setTime(this.periodoCancelamento);
+        c.setTime(this.dataPeriodo);
 
         listaCancelamentosUsuarioDTO = this.service.topUsuariosCancelamentoAnoMes(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1);
 
@@ -121,6 +118,10 @@ public class AgendamentoController {
 
     public void listarAgendamentoPorPaciente() throws Exception {
         this.agendamentos = this.service.listarAgendamentoPorPaciente(this.paciente);
+    }
+
+    public void listarAgendamentoPorMedico() throws Exception {
+        this.agendamentos = this.service.listarAgendamentoPorMedico(medico, dataPeriodo);
     }
 
     public Date getHoraCorrente(){
