@@ -12,7 +12,7 @@
 * Cancelar agendamento de consulta :heavy_check_mark:
 * Apresentar todas as consultar agendadas no mês para um médico especifico
 * Apresentar todas as consultas marcadas e realizadas por determinado paciente
-* Apresentar o paciente que mais cancelou consultas, no mês e no ano;
+* Apresentar o paciente que mais cancelou consultas, no mês e no ano; :heavy_check_mark:
 
 --
 
