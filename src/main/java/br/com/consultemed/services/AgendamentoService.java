@@ -3,6 +3,8 @@ package br.com.consultemed.services;
 import br.com.consultemed.dto.CancelamentosUsuarioDTO;
 import br.com.consultemed.exceptions.HorarioAgendamenteException;
 import br.com.consultemed.models.Agendamento;
+import br.com.consultemed.models.Paciente;
+import br.com.consultemed.models.Usuario;
 import br.com.consultemed.repository.repositories.AgendamentoRepository;
 
 import javax.inject.Inject;
@@ -60,5 +62,9 @@ public class AgendamentoService {
 
     public List<CancelamentosUsuarioDTO> topUsuariosCancelamentoAnoMes(int ano, int mes){
         return this.repository.topUsuariosCancelamentoAnoMes(ano, mes);
+    }
+
+    public List<Agendamento> listarAgendamentoPorPaciente(Paciente paciente) throws Exception {
+        return this.repository.listarAgendamentoPorPaciente(paciente);
     }
 }

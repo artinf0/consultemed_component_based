@@ -3,6 +3,8 @@ package br.com.consultemed.repository.repositories;
 import br.com.consultemed.dto.CancelamentosUsuarioDTO;
 import br.com.consultemed.models.Agendamento;
 import br.com.consultemed.models.Medico;
+import br.com.consultemed.models.Paciente;
+import br.com.consultemed.models.Usuario;
 import br.com.consultemed.utils.DataUtils;
 import br.com.consultemed.utils.JPAUtils;
 
@@ -211,5 +213,26 @@ public class AgendamentoRepository {
         }
 
         return result;
+    }
+
+
+    public List<Agendamento> listarAgendamentoPorPaciente(Paciente paciente) throws Exception {
+        this.factory = emf.createEntityManager();
+        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
+        try {
+
+            Query query = this.factory.createQuery("select a from Agendamento a where a.paciente = :paciente");
+            query.setParameter("paciente", paciente);
+
+            agendamentos = query.getResultList();
+
+        } catch (Exception e) {
+            e.getMessage();
+            this.factory.getTransaction().rollback();
+        } finally {
+            factory.close();
+        }
+
+        return agendamentos;
     }
 }

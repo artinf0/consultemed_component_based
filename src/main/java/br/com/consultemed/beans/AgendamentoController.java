@@ -119,6 +119,10 @@ public class AgendamentoController {
         return listaCancelamentosUsuarioDTO;
     }
 
+    public void listarAgendamentoPorPaciente() throws Exception {
+        this.agendamentos = this.service.listarAgendamentoPorPaciente(this.paciente);
+    }
+
     public Date getHoraCorrente(){
         return new Date();
     }
