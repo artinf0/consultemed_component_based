@@ -1,5 +1,6 @@
 package br.com.consultemed.services;
 
+import br.com.consultemed.dto.CancelamentosUsuarioDTO;
 import br.com.consultemed.exceptions.HorarioAgendamenteException;
 import br.com.consultemed.models.Agendamento;
 import br.com.consultemed.repository.repositories.AgendamentoRepository;
@@ -36,6 +37,28 @@ public class AgendamentoService {
     }
 
     public void cancelarAgendamento(Long id) {
-        this.repository.cancelarById(id);
+        Agendamento agendamento = this.repository.buscarById(id);
+
+        if(agendamento == null){
+            throw new RuntimeException("Cancelamento não encontrado");
+        }
+
+        if(agendamento.getStatus()){
+            agendamento.setDataCancelamento(new Date());
+            agendamento.setStatus(false);
+        } else {
+            agendamento.setDataCancelamento(null);
+            agendamento.setStatus(true);
+        }
+
+        this.repository.salvarAgendamento(agendamento);
+    }
+
+    public List<CancelamentosUsuarioDTO> topUsuariosCancelamentoAno(int ano){
+        return this.repository.topUsuariosCancelamentoAnoMes(ano, 0);
+    }
+
+    public List<CancelamentosUsuarioDTO> topUsuariosCancelamentoAnoMes(int ano, int mes){
+        return this.repository.topUsuariosCancelamentoAnoMes(ano, mes);
     }
 }

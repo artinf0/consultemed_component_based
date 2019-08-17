@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<p:spacer height="10" />
+
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="#" />
+				<p:menuitem value="Agendamentos" url="#" />
+				<p:menuitem value="Cancelamentos" url="#" />
+			</p:breadCrumb>
+		</h:form>
+	
+		<p:spacer height="10" />
+		
+			
+
+		<div>
+
+
+			<div>
+				<h1>Cancelamentos no Ano</h1>
+				<p:dataTable id="table-ano" var="agendamento"
+							 value="#{agendamentoController.topUsuariosCancelamentoAno()}">
+					<p:column headerText="Paciente">
+						<h:outputText value="#{agendamento.nome}" />
+					</p:column>
+
+					<p:column headerText="Cancelamentos">
+						<h:outputText value="#{agendamento.quantidade}" />
+					</p:column>
+				</p:dataTable>
+
+			</div>
+
+
+
+			<div>
+				<h1>Cancelamentos no Mês</h1>
+				<h:form>
+					<p:calendar id="test"
+								value="#{agendamentoController.periodoCancelamento}"
+								pattern="MM/yyyy"
+								/>
+
+					<p:commandButton action="#{agendamentoController.topUsuariosCancelamentoAnoMes()}" value="Consultar"
+									 update="@([id$=table-mes])"
+					/>
+
+
+				</h:form>
+
+
+				<p:dataTable id="table-mes" var="agendamento"
+							 value="#{agendamentoController.listaCancelamentosUsuarioDTO}">
+					<p:column headerText="Paciente">
+						<h:outputText value="#{agendamento.nome}" />
+					</p:column>
+
+					<p:column headerText="Cancelamentos">
+						<h:outputText value="#{agendamento.quantidade}" />
+					</p:column>
+
+
+				</p:dataTable>
+
+			</div>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

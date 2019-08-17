@@ -29,6 +29,9 @@ public class Agendamento implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAgendamento;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCancelamento;
+
     public String getDataAgendamentoFormatado() {
         return DataUtils.formatarData(dataAgendamento,"dd/MM/yyyy HH:mm:ss");
     }
