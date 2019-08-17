@@ -25,38 +25,54 @@
 				<p:autoUpdate/>
 			</p:messages>
 		 <p:panel id="cadastroAgendamento" header="Cadastro de Agendamento" style="margin-bottom:20px">
-		 
-			<h:panelGrid columns="2">
-			
-				<span class="ui-float-label"> 
-					<h:inputHidden value="#{agendamentoController.agendamento.id}" />
-				</span>
-				
-				<h3>Médico</h3>
-				<span class="ui-float-label"> 
-					<h:inputText id="medico" value="#{agendamentoController.medico.id}" required="true"/>
-				</span>
-				
-				<h3>Paciente</h3>
-				<span class="ui-float-label"> 
-					<h:inputText id="paciente" value="#{agendamentoController.paciente.id}" required="true"/>
-				</span>
-				
-				<h3>Data do Agendamento</h3>
-				<span class="ui-float-label">
-					<p:calendar id="data" value="#{agendamentoController.agendamento.dataAgendamento}"
-								mindate="#{agendamentoController.horaCorrente}"
-								pattern="MM/dd/yyyy HH:mm:ss"
-								required="true"/>
-				</span>
 
-			
+			<h:inputHidden value="#{agendamentoController.agendamento.id}" />
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                <p:outputLabel for="data" value="Data do Agendamento:" />
+                <p:calendar id="data" value="#{agendamentoController.agendamento.dataAgendamento}"
+                            mindate="#{agendamentoController.horaCorrente}"
+                            pattern="MM/dd/yyyy HH:mm:ss"
+                            required="true"/>
+
+                <p:outputLabel for="paciente_selecionado" value="Paciente:" />
+                <p:selectOneMenu id="paciente_selecionado" value="#{agendamentoController.paciente}"
+                                 converter="PacienteConverter"
+                                 required="true"
+                                 requiredMessage="Selecione um Paciente">
+
+                            <f:selectItem itemLabel="Selecione um Paciente" itemValue=""/>
+
+                            <f:selectItems value="#{pacienteController.listaPacientes()}" var="paciente"
+                                           itemLabel="#{paciente.nome}"
+                                           itemValue="#{paciente}"/>
+
+                </p:selectOneMenu>
+
+
+
+                <p:outputLabel for="medico_selecionado" value="Médico:" />
+                <p:selectOneMenu id="medico_selecionado" value="#{agendamentoController.medico}"
+                                 converter="MedicoConverter"
+                                 required="true"
+                                 requiredMessage="Selecione um Medico">
+
+                            <f:selectItem itemLabel="Selecione um Medico" itemValue=""/>
+
+                            <f:selectItems value="#{medicoController.listaMedicos()}" var="medico"
+                                           itemLabel="#{medico.nome}"
+                                           itemValue="#{medico}"/>
+
+                </p:selectOneMenu>
+
+
 			</h:panelGrid>
-			
+
 		</p:panel>
-		
+
 			<p:commandButton action="#{agendamentoController.addAgendamento()}" value="Salvar" />
-		
+
 		</h:form>
 
 
