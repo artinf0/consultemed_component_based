@@ -3,6 +3,7 @@ package br.com.consultemed.services;
 import br.com.consultemed.dto.CancelamentosUsuarioDTO;
 import br.com.consultemed.exceptions.HorarioAgendamenteException;
 import br.com.consultemed.models.Agendamento;
+import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.models.Usuario;
 import br.com.consultemed.repository.repositories.AgendamentoRepository;
@@ -66,5 +67,9 @@ public class AgendamentoService {
 
     public List<Agendamento> listarAgendamentoPorPaciente(Paciente paciente) throws Exception {
         return this.repository.listarAgendamentoPorPaciente(paciente);
+    }
+
+    public List<Agendamento> listarAgendamentoPorMedico(Medico medico, Date data) throws Exception {
+        return this.repository.listarAgendamentoPorMedico(medico, data);
     }
 }

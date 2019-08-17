@@ -235,4 +235,26 @@ public class AgendamentoRepository {
 
         return agendamentos;
     }
+
+    public List<Agendamento> listarAgendamentoPorMedico(Medico medico, Date data) throws Exception {
+        this.factory = emf.createEntityManager();
+        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
+        try {
+
+            Query query = this.factory.createQuery("select a from Agendamento a where a.medico = :medico and a.dataAgendamento between :dataInicial and :dataFinal order by a.dataAgendamento asc ");
+            query.setParameter("medico", medico);
+            query.setParameter("dataInicial", DataUtils.monthStartDateMinutes(data));
+            query.setParameter("dataFinal", DataUtils.monthEndDateMinutes(data));
+
+            agendamentos = query.getResultList();
+
+        } catch (Exception e) {
+            e.getMessage();
+            this.factory.getTransaction().rollback();
+        } finally {
+            factory.close();
+        }
+
+        return agendamentos;
+    }
 }

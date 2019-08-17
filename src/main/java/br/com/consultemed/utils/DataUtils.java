@@ -47,4 +47,28 @@ public class DataUtils {
 
         return c.getTime();
     }
+
+    public static Date monthStartDateMinutes(Date data){
+        Calendar c = Calendar.getInstance();
+        c.setTime(data);
+        c.set(Calendar.DAY_OF_MONTH, c.getActualMinimum(Calendar.DAY_OF_MONTH));
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+        return c.getTime();
+    }
+
+    public static Date monthEndDateMinutes(Date data){
+        Calendar c = Calendar.getInstance();
+        c.setTime(data);
+        c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+        c.set(Calendar.HOUR, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        c.set(Calendar.MILLISECOND, 59);
+
+        return c.getTime();
+    }
 }

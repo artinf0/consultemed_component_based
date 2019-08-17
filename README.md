@@ -10,7 +10,7 @@
 * Consultar agendamentos por data 
 * Verificar se já possui um agendamento em uma data informada associada a um médico especifico :heavy_check_mark:
 * Cancelar agendamento de consulta :heavy_check_mark:
-* Apresentar todas as consultar agendadas no mês para um médico especifico
+* Apresentar todas as consultar agendadas no mês para um médico especifico :heavy_check_mark:
 * Apresentar todas as consultas marcadas e realizadas por determinado paciente :heavy_check_mark:
 * Apresentar o paciente que mais cancelou consultas, no mês e no ano; :heavy_check_mark:
 
